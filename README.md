@@ -3,4 +3,4 @@
 Team: 
 -Bruno Cattalini
 -Lucas Kaniak
--Luiz Joel
+-Luiz Servelo
