@@ -1,0 +1,12 @@
+*Vertices 5 
+1 "Curitiba"
+2 "Ponta Grossa"
+3 "Cascavel"
+4 "Pinhais"
+5 "Paranagua"
+*Edges 
+2 3 50
+1 2 44
+1 3 27
+3 4 34
+5 4 80

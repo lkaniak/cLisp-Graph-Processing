@@ -1,0 +1,1 @@
+start cmd /k "lisp.exe -M lispinit.mem"
