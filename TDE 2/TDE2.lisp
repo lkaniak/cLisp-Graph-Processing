@@ -156,20 +156,23 @@
 	)
 )
 
-(defun soma_melhores_caminhos (o g)
+(defun soma_distancias (o g)
 	(let ((soma 0))
 		(dolist (v1 (car g) soma)
-			(setq soma (+ soma (car (A_estrela o (car v1) g (expande (list 0 o) g)))))
+			(print (A_estrela o (car v1) g (expande (list 0 o) g)))
+			(if (not (eq (car v1) o))
+				(setq soma (+ soma (- (length (A_estrela o (car v1) g (expande (list 0 o) g))) 2)))
+			)
 		)
 	)
 )
 
 (defun proximidade(v g)
 	;segundo o quadro
-	;(* (/ 1 (length (car g))) (soma_melhores_caminhos v g))
+	;(* (/ 1 (length (car g))) (soma_distancias v g))
 
 	;segundo o documento
-	(* (/ 1 (soma_melhores_caminhos v g)))
+	(/ 1 (soma_distancias v g))
 
 )
 
@@ -230,29 +233,9 @@
 ; Para teste: (setq teste '(("Grau" (9999 8) (156 6) (22 6))("Proximidade" (18 4.76) (170 4.52) (1500 4.44))("Intermediacao" (90 4.42) (76 38) (5 37))))
 
 (defun tabela (g)
-	(print (list (todos_graus g) (todas_proximidades g) (todas_intermediacoes g) ))
-	(print_saida (list (todos_graus g) (todas_proximidades g) (todas_intermediacoes g) ))
+	(print_tabela (todos_graus g) (todas_proximidades g) (todas_intermediacoes g))
 )
-
-(defun print_saida (tabela)
-	(setq a (car tabela))
-	(setq b (cadr tabela))
-	(setq c (caddr tabela))
-	(if (eq (car a) "Proximidade")
-		(if (eq (car b) "Intermediacao")(print_tabela c a b)
-			(print_tabela b a c)
-		)
-		(if (eq (car a) "Intermediacao")
-			(if (eq (car b) "Proximidade")(print_tabela c b a)
-				(print_tabela b c a)
-			)
-			(if (eq (car b) "Proximidade")(print_tabela a b c)
-				(print_tabela a c b)
-			)
-		)
-	)
-)
-
+	
 (defun print_tabela (coluna1 coluna2 coluna3)
 	(setq cab1 "Vertice")
 	(setq cab2 "Valor")
